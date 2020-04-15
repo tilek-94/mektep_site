@@ -1,8 +1,8 @@
 <?
-$connection=mysqli_connect('localhost','root','','admin_omk') or die('ne udalost');
+ $connection=mysqli_connect('localhost','root','','admin_omk') or die('ne udalost');
+$result=mysqli_set_charset($connection,'utf8'); 
 
-
-$result=mysqli_set_charset($connection,'utf8'); $title=$_POST['title'];
+$title=$_POST['title'];
  $info=$_POST['info'];
  $video=$_POST['video'];
  $raz=$_POST['raz'];
@@ -13,74 +13,73 @@ $tabli=$_GET['tabli'];
 $izmen=$_GET['izmenit'];
 $idi=$_GET['idi'];
 
-
 /*if (!empty($udal)) {
 $sql="DELETE FROM $tabl WHERE id='$udal'";
 $res = mysqli_query($connection,$sql);
 
 }*/
 
+$Cl=new BasaKlass($connection,$result);
+
+if (!empty($udal)) {
+$Cl->AddVideos("DELETE FROM $tabl WHERE id='$udal'");
+}elseif ($izmen=="izmen") {
+if(empty($foto))
+$foto=$Cl->AddFoto();
+if (empty($title)) $title="0"; 
+if (empty($info)) $info="0"; 
+if (empty($foto)) $foto="0"; 
+if (empty($raz)) $raz="0"; 
+
+$Cl->AddVideos("
+UPDATE $tabli SET 
+title='$title',text='$info', img='$foto', raz='$raz'  where id='$idi'
+");
+
+
+} else{
 
 if ($tabl=="video") {
-
-	if (!empty($title) and !empty($info) ) {
-$uploaddir = '../images/';
-$uploadfile = $uploaddir.basename($_FILES['uploadfile']['name']);
-// Копируем файл из каталога для временного хранения файлов:
-if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile))
-{
-//echo "<h3>Файл успешно загружен на сервер</h3>";
- $foto=$_FILES['uploadfile']['name'];
-$sql="INSERT INTO $tabl (title,text,video,img) VALUES ('$title','$info','$video','$foto')";
-$res = mysqli_query($connection,$sql);
-}
-else { echo "<h3>Ошибка! Не удалось загрузить файл на сервер!</h3>"; exit; }
-
-}
+$foto=$Cl->AddFoto();
+if (empty($title)) $title="0"; 
+if (empty($info)) $info="0"; 
+if (empty($video)) $video="0"; 
+if (empty($foto)) $foto="0"; 
+	
+$Cl->AddVideos("INSERT INTO $tabl (title,text,video,img) VALUES ('$title','$info','$video','$foto')");
 
 }
 elseif ($tabl=="list_now") {
 
 if (!empty($title)) {
-$sql="INSERT INTO $tabl (title) 
-VALUES ('$title')";
-$res = mysqli_query($connection,$sql);
 
-}
+$Cl->AddVideos("INSERT INTO $tabl (title) VALUES ('$title')");
+
 	}
 
+}
 elseif (!empty($cat1)) {
-if (!empty($title) and !empty($info) ) {
-$uploaddir = '../images/';
-$uploadfile = $uploaddir.basename($_FILES['uploadfile']['name']);
-// Копируем файл из каталога для временного хранения файлов:
-if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile))
-{
-//echo "<h3>Файл успешно загружен на сервер</h3>";
- $foto=$_FILES['uploadfile']['name'];
-$sql="INSERT INTO $tabl (title,text,img,kat,raz) 
-VALUES ('$title','$info','$foto','$cat1','$raz')";
-$res = mysqli_query($connection,$sql);
-}
-else { echo "<h3>Ошибка! Не удалось загрузить файл на сервер!</h3>"; exit; }
 
-}
+	$foto=$Cl->AddFoto();
+if (empty($title)) $title="0"; 
+if (empty($info)) $info="0"; 
+if (empty($foto)) $foto="0"; 
+if (empty($raz)) $raz="0"; 
+
+$Cl->AddVideos("INSERT INTO $tabl (title,text,img,kat,raz) 
+VALUES ('$title','$info','$foto','$cat1','$raz')");
+
 }elseif(!empty($tabl)){
 
-if (!empty($title) and !empty($info) ) {
-$uploaddir = '../images/';
-$uploadfile = $uploaddir.basename($_FILES['uploadfile']['name']);
-// Копируем файл из каталога для временного хранения файлов:
-if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile))
-{
-//echo "<h3>Файл успешно загружен на сервер</h3>";
- $foto=$_FILES['uploadfile']['name'];
-$sql="INSERT INTO $tabl (title,text,img,raz) VALUES ('$title','$info','$foto','$raz')";
-$res = mysqli_query($connection,$sql);
-}
-else { echo "<h3>Ошибка! Не удалось загрузить файл на сервер!</h3>"; exit; }
 
-}
+	$foto=$Cl->AddFoto();
+if (empty($title)) $title="0"; 
+if (empty($info)) $info="0"; 
+if (empty($foto)) $foto="0"; 
+if (empty($raz)) $raz="0"; 
+
+$Cl->AddVideos("INSERT INTO $tabl (title,text,img,raz) VALUES ('$title','$info','$foto','$raz')");
+
 
 }
 
@@ -91,49 +90,97 @@ if ($tabl=="menu") {
 $pod_men=$_POST['pod_men'];
 
 if (!empty($title)) {
-$sql="INSERT INTO $tabl (name) 
-VALUES ('$title')";
-$res = mysqli_query($connection,$sql);
+	$Cl->AddVideos("INSERT INTO $tabl (name)VALUES ('$title')");
+
 }else{
 	$title=$_POST['cat'];
 }
 
 
 if (!empty($pod_men)) {
-	$sql="INSERT INTO pod_menu (name,pod_name) 
-VALUES ('$title','$pod_men')";
-$res = mysqli_query($connection,$sql);
+$Cl->AddVideos("INSERT INTO pod_menu (name,pod_name) 
+VALUES ('$title','$pod_men')");
+
+
+}
 }
 }
 
 
-//izmenit
-if ($izmen=="izmen") {
-	 
-if (!empty($title) and !empty($info)) {
+
+
+
+
+Class BasaKlass{
+
+public $connection;
+public $kodirovka;
+function __construct($conekt,$kodir) {
+    $this->connection = $conekt;
+    $this->kodirovka = $kodir;
+
+  }
+	function AddReg($text){
+           $res = mysqli_query($this->connection,$text);		
+	}
+
+	function AddVideos($text){
+    $res = mysqli_query($this->connection,$text);
+
+	}
+
+	function AddFoto(){
+
+
+
+
+
+$filename1 = $_FILES['uploadfile']['name'];
+$ext = pathinfo($filename1, PATHINFO_EXTENSION);
+if(!empty($ext)){
+	$query = "SELECT * FROM foto_shot where id='1'";
+$res1 = mysqli_query($this->connection,$query);
+$row =mysqli_fetch_array($res1);
+$s=$row['shot'];
+$s+=1;
+$sql="UPDATE foto_shot SET 
+shot='$s' where id='1'";
+$res = mysqli_query($this->connection,$sql);
+
+}
+
+$allowed_filetypes = array('.jpg','.JPG','.Jpg','.gif','.GIF','.Gif','.bmp','.BMP','.Bmp','.png','.PNG','.Png'); // допустимые форматы. 
+$max_filesize = 524288; // Допустимый размер загружаемого файла. 
+$upload_path = '../images/'; // Директория для загрузки. 
+$new_name = $s; // Новое имя для файла.(типа получено динамически =) ) 
+$filename =$new_name.".".$ext; 
+$ext = substr($filename, strpos($filename,'.'), strlen($filename)-1); 
+if(move_uploaded_file($_FILES['uploadfile']['tmp_name'],$upload_path . $filename))
+return $filename;
+
+
+
+
+
+
+/*
+
 $uploaddir = '../images/';
 $uploadfile = $uploaddir.basename($_FILES['uploadfile']['name']);
-if (!empty($_FILES['uploadfile']['name'])) {
-	
+if(!empty($_FILES['uploadfile']['name'])){
+       if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile))
+            {
+ 
+                 return $foto=$_FILES['uploadfile']['name'];
+ 
+            }
 
-if (copy($_FILES['uploadfile']['tmp_name'], $uploadfile))
-{
-$foto=$_FILES['uploadfile']['name'];
- $sql="
-UPDATE $tabli SET 
-title='$title',text='$info', img='$foto', raz='$raz'  where id='$idi'
-";
-$res = mysqli_query($connection,$sql);
+    }else{
+
+    	return null;
+    }*/
+	                  }
+  
+
 }
-
-}else {
- $sql="
-UPDATE $tabli SET 
-title='$title',text='$info',  raz='$raz'  where id='$idi'
-";
-$res = mysqli_query($connection,$sql);
-
-
- }
-}
-}
+?>

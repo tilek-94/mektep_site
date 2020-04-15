@@ -26,7 +26,8 @@ echo "
 <td>{$row['text']}</td>
 <td> <img width='100px' src='../images/{$row['img']}'></td>
 <td><a href='index.php?view=izmenit&tabl={$_GET['tabl']}&izmenit={$row['id']}'> <img width='50px' src='../images/red2.png'></a></td>
-<td><a href='index.php?tabl1={$_GET['tabl']}&tabl={$_GET['tabl']}&udal={$row['id']}'> <img width='50px' src='../images/udalit.jpg'></a></td>
+<td><a href='index.php?tabl1={$_GET['tabl']}&tabl={$_GET['tabl']}&udal={$row['id']}'> 
+<img width='50px' src='../images/admin/udalit.jpg'></a></td>
 </tr>
 ";
 }

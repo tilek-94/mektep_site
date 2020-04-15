@@ -1,4 +1,5 @@
      <?
+
 $tabl=$_GET['tabl'];
 $cat=$_GET['cat'];
 if ($tabl=="menu_now") {
@@ -52,15 +53,18 @@ $row =mysqli_fetch_array($res1);
  </h2>
 
  <div   >
+   <? if(!empty($row['img'])){  ?>
 <img style="width:<? echo $row['raz']; ?>px; " 
  src="images/<? echo $row['img']; ?>"  alt="Post image"/>
+ <?}?>
 </div>
 
 <h2 class="post-title">
- <? echo $row['title']; ?>
+  
+ <? if(!empty($row['title'])) echo $row['title']; ?>
  </h2>
 
-<? echo $row['text']; ?>
+<? if(!empty($row['text'])) echo $row['text']; ?>
 
 </div>
 </td><td style="vertical-align: top;">
@@ -76,7 +80,9 @@ while($row =mysqli_fetch_array($res1)):
 
 
     <div class="con2">
+     
     <div style="background-image: url(images/<? echo $row['img']; ?>);"  class="con21" >
+    
         
     </div>
 <h4><a href="index.php?id=content2&cat=<? echo $row['id']; ?>&tabl=os_now"> <? echo $row['title']; ?></a></h4>
@@ -102,8 +108,10 @@ while($row =mysqli_fetch_array($res1)):
 
 
     <div class="con2">
+   
     <div style="background-image: url(images/<? echo $row['img']; ?>);"  class="con21" >
-        
+   
+          
     </div>
 <h4><a href="index.php?id=content2&cat=<? echo $row['id']; ?>&tabl=now"> <? echo $row['title']; ?></a></h4>
 </div>

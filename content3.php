@@ -26,11 +26,11 @@ while($row =mysqli_fetch_array($res1)):
            
                         
                         <div id="con3" >  
- <img  src="images/<? echo $row['img']; ?>" alt="Post image"/>
+ <img  src="images/<? if(!empty($row['img'])) echo $row['img']; ?>" alt="Post image"/>
                                   </div>
                         </div>
 <h3>
- <? echo $row['title']; ?>
+ <? if(!empty($row['title'])) echo $row['title']; ?>
  </h3>
 
 
@@ -42,7 +42,7 @@ while($row =mysqli_fetch_array($res1)):
 
                             <div class="col-md-10 entry-content">
 
-<? echo substr ($row['text'], 0, 1000)."..."; ?>
+<? if(!empty($row['text'])) echo substr ($row['text'], 0, 1000)."..."; ?>
                             </div>
                             <!-- end .entry-details -->
 
@@ -58,45 +58,7 @@ while($row =mysqli_fetch_array($res1)):
 </form>
 <hr>
 <? endwhile; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                
+              
                                 <!-- end .column -->
                             </div>
                             <!-- end .row -->

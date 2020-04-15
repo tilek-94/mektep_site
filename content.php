@@ -57,7 +57,7 @@ while($row =mysqli_fetch_array($res1)):
 </a>
 <h5 ><a href="index.php?id=content2&cat=<? echo $row['id']; ?>
 &tabl=left_now">
-<? echo $row['title']; ?></a></h5>
+<? if(!empty($row['title'])) echo $row['title']; ?></a></h5>
 </div>
 </div>
 <? 
@@ -139,7 +139,7 @@ else:
 </div>
 <h4 style="font-size:1em;"><a href="index.php?id=content2&cat=<? echo $row['id']; ?>
 &tabl=os_now">
-<? echo substr ($row['title'], 0,150)."..."; ?>
+<?if(!empty($row['title'])) echo substr ($row['title'], 0,150)."..."; ?>
 </a></h4>
 <p>
 
@@ -267,9 +267,9 @@ elseif ($tf==5):
 <span class="author"></span>
 <span class="date"></span>
 </div>
-<h4><a href=""><? echo $title; ?></a></h4>
+<h4><a href=""><? if(!empty($row['title'])) echo $title; ?></a></h4>
 <p>
-    <? echo $text; ?>
+    <?if(!empty($row['text'])) echo $text; ?>
 
 </p>
 </div>

@@ -18,9 +18,9 @@ $video1= $row['video'];
 <img src="images/5x3.png" alt="Proportion"/>
 <a class="video-player video-player-center video-player-large" href="<? echo $video1; ?>"></a>
 </div>
-<a href="single.html"><? echo $title; ?></a>
+<a href="single.html"><? if(!empty($row['title'])) echo $title; ?></a>
 <p>
-    <? echo $text; ?>
+    <? if(!empty($row['text'])) echo $text; ?>
 
 </p>
 </div>

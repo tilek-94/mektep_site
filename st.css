@@ -1,0 +1,88 @@
+.bodersl{
+	background-color: rgba(225,225,225,0.6);
+	padding-bottom: 3%;
+
+}
+#s1{
+	margin-left: 80px;
+	color: white;
+}
+.missia{
+margin-left: 10%;
+margin-top: 1%;
+
+padding: 20px;
+
+
+}
+.div_l{
+	float:left;
+	width: 39%;
+	margin-left: 50px;
+	text-align: justify;
+	color: black;
+
+}
+
+.missia1{
+
+}
+.div_l1{
+	float:left;
+	width: 45%;
+	text-align: justify;
+	color: black; margin-left: 40px;
+	margin-top: -50px;
+	margin-bottom: -50px;
+
+}
+#hr1{
+	height: 2px;
+	background-color: red;
+	width: 72%;
+
+	margin-bottom: -10px;
+	margin-top: 5px;
+}
+.div_v{
+	float: left;
+}
+.hr_v{
+	height: 110px;
+	width: 2px;
+	background-color: green;
+	margin-right: -25px;
+	margin-top: 8px;
+
+}
+
+.con1_l{
+margin-left: 35%;
+	width: 680px;
+	/*//background-color: red;*/
+	
+}
+.con21{
+	
+	width: 430px;
+	height: 250px;
+	 background-position: center;
+    background-size: cover;
+	
+	
+}
+.con2{
+	width: 450px;
+	
+	margin-left: 60%;
+	 box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);
+	 margin-top: 30px;
+	 padding: 10px;
+
+	
+}
+.im1{
+	height: 200px;
+	background-size:cover;
+	background-position: center;
+}

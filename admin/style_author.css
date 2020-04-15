@@ -1,0 +1,54 @@
+body{
+	background-image: url(x1.jpg);
+	background-size: 100% 100%;
+}
+.div_author{
+	margin:10% 0% 0% 35%; 
+	padding: 0% 0% 2% 7%;
+	background-color:rgba(0,0,0, 0.5);
+	width: 450px;
+	color: white;
+	font-size: 1.5em;
+	border-radius: 10px;
+}
+
+.div_author input{
+	width: 250px;
+}
+
+@media only screen and ( max-width: 500px){
+
+.div_author{
+	
+	background-color:rgba(0,0,0, 0.5);
+	width: 450px;
+	color: white;
+	font-size: 1.5em;
+	border-radius: 10px;
+}
+
+.div_author input{
+	width: 250px;
+}
+}
+
+@media only screen and ( min-width: 500px) and (max-width:700px ){
+.div_author{
+	
+	background-color:rgba(0,0,0, 0.5);
+	width: 450px;
+	color: white;
+	font-size: 1.5em;
+	border-radius: 10px;
+}
+
+.div_author input{
+	width: 250px;
+}
+	
+}
+
+
+.admin1{
+	background-color: red;
+}

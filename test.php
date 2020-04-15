@@ -1,0 +1,1 @@
+<? include "slide/standard.php" ?>

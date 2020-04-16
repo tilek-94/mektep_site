@@ -2,19 +2,7 @@
 <div class="content-area pvt0">
     <div class="container">
 
-       <!--  
-        <div class="row">
- -->
-
-
-<? 
-$query = "SELECT * FROM now ORDER BY id DESC";
-$res1 = mysqli_query($connection,$query);
-$row =mysqli_fetch_array($res1);
-   
-?>
-
- <div style="background-image: url(images/<? echo $row['img']; ?>);
+ <div style="background-image: url(images/<? echo $Dis->DisplayFoto('now','img') ?>);
  background-size: cover;
 background-position: center;
 ba
@@ -115,7 +103,7 @@ if ($t==1):
 index.php?id=content2&cat=<? echo $row['id']; ?>
 &tabl=os_now
 ">
-<? echo substr ($row['title'], 0,250)."..."; ?>
+<? echo $Dis->cut_paragraph($row['title'])."..."; ?>
 
 
 </a></h4>
@@ -139,7 +127,7 @@ else:
 </div>
 <h4 style="font-size:1em;"><a href="index.php?id=content2&cat=<? echo $row['id']; ?>
 &tabl=os_now">
-<?if(!empty($row['title'])) echo substr ($row['title'], 0,150)."..."; ?>
+<?if(!empty($row['title'])) echo $Dis->cut_paragraph($row['title'])."..."; ?>
 </a></h4>
 <p>
 
@@ -183,7 +171,7 @@ if ($t==1) {
 <div class="row">
 <div class="col-sm-12 mv3 mvt0">
 <a href="#">
-<img src="img/545456446546.JPG" alt="banner" class="full-size">
+<img src="images/<? echo $Dis->DisplayFoto('baner','foto') ?>" alt="banner" class="full-size">
 </a>
 </div>
 </div>
@@ -240,8 +228,8 @@ elseif ($tf==3):
 </div>
             <?
 elseif ($tf==4):
-?>                        
-                                                                        <div class="col-xs-6 col-sm-6 col-md-3">
+?>          
+                                                           <div class="col-xs-6 col-sm-6 col-md-3">
 <div class="post hover-light">
 <div class="image video-frame" data-src="images/<? echo $foto; ?>">
 <img src="images/1x1.png" alt="Proportion"/>

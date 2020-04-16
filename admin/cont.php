@@ -40,6 +40,12 @@ if (empty($_GET['tabl'])) {
 			</div>			
 
 					</div>
+<hr>
+<?
+include "loadDoc.php"; 
+					?>
+<hr>
+
 					<?
 include "tabl.php"; 
 					}?>

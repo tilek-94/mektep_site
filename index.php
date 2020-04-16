@@ -54,7 +54,10 @@
     #vid{
       margin-left: 10%; 
     }
-    
+    .footerTable td{
+padding: 10px;
+
+}
 </style>
 
 
@@ -92,7 +95,7 @@
 
 
                             <div class="header-wrapper">
-<img src="images/f1.png"  width="150px" height="100px" style="margin-left:-40px;">
+<img src="images/admin/gerp.png" m  width="90px" height="90px" style="margin-left:-40px; margin-top: 5px;">
                                    
                                 <div class="site-branding">
 
@@ -100,10 +103,10 @@
 <a href="index.php" rel="home" class="custom-logo-link" style="font-family: Arial;  letter-spacing: 5px;" >
                                      
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<!--  
 &nbsp; &nbsp; &nbsp; 
- 
-
-                                  <b>    ОШ МЕДИЦИНАЛЫК КОЛЛЕДЖИ </b>
+ -->
+                                  <b>    ОШ МАМЛЕКЕТТИК УНИВЕРСИТЕТИ </b>
 
  </a>                                 <!-- text logo -->
                                     <!--
@@ -284,21 +287,34 @@ if (empty($id)) {
 
                    <div class="missia1">
                        <div class="div_l1">
-                        <table style="color: white;" ><tr><td style="width:37%;">
-Полное наименование:     </td><td >_  </td></tr>
+
+    <?
+    
+$query = "SELECT * FROM footer ORDER BY id DESC";
+        $res1 = mysqli_query($connection,$query);
+        $row =mysqli_fetch_array($res1);
+        
+    ?>                    
+                        <table style="color: white;" class="footerTable" >
+<tr><td style="width:37%;">
+Окуу жайдын толук аталышы  </td>
+<td ><? echo $row['title']; ?></td></tr>
 <tr><td>
-Сокращённое название:  </td><td>   _ </td></tr><tr><td>
-Год создания:            </td><td>             _</td></tr><tr><td>
-Юридический адрес:     </td><td>        _         <br></td></tr>
-</table>
+Кыскартылган аталышы:  </td>
+<td> <? echo $row['t2']; ?>  </td></tr>
+<tr><td> Түзүлгөн жыл:            </td>
+    <td>         <? echo $row['t3']; ?> </td></tr>
+    <tr><td>
+Юридикалык дареги:     </td>
+<td>       <? echo $row['t4']; ?> </td></tr></table>
                        </div>
                        
                         <div class="div_l1">
-<table style="color: white;" ><tr><td style="width:20%;">
-Телефоны:</td><td > _</td></tr><tr><td>
-E – mail: </td><td >_</td></tr><tr><td>
-Сайт:    </td><td > omk.kbb.kg</td></tr><tr><td>
-Учредитель: </td><td >_
+<table style="color: white; padding: 10px;" class="footerTable" ><tr><td style="width:30%;">
+Телефоны:</td><td > <? echo $row['t5']; ?> </td></tr><tr><td>
+E – mail: </td><td ><? echo $row['t6']; ?> </td></tr><tr><td>
+Сайт:    </td><td ><? echo $row['t7']; ?> </td></tr><tr><td>
+Директор: </td><td ><? echo $row['t8']; ?> 
 
 </td></tr>
             </table>           </div>

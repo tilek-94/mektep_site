@@ -58,7 +58,7 @@ echo "
 <tr>
 <td id='vb'>$s1</td>
 <td id='vb'>{$row['name']}</td>
-<td id='vb'><a href='index.php?tabl1={$_GET['tabl']}&tabl=menu&udal={$row['id']}&view=menu_cr'> <img width='50px' src='../images/udalit.jpg'></a></td>
+<td id='vb'><a href='index.php?tabl1={$_GET['tabl']}&tabl=menu&udal={$row['id']}&view=menu_cr'> <img width='50px' src='../images/admin/udalit.jpg'></a></td>
 </tr>
 ";
 
@@ -79,7 +79,7 @@ echo "
 &nbsp;&nbsp;&nbsp;
 
 {$row1['pod_name']}</td>
-<td><a href='index.php?tabl1=pod_menu&tabl={$_GET['tabl']}&udal={$row1['id']}&view=menu_cr'> <img width='50px' src='../images/udalit.jpg'></a></td>
+<td><a href='index.php?tabl1=pod_menu&tabl={$_GET['tabl']}&udal={$row1['id']}&view=menu_cr'> <img width='50px' src='../images/admin/udalit.jpg'></a></td>
 </tr>
 ";
 }}

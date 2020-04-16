@@ -137,9 +137,9 @@ if ($_SESSION['parol']=='Admin') {
 							<div class="media">
 								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
 								<div class="media-body">
-									<span class="media-heading text-semibold">Умаров Тилек</span>
+									<span class="media-heading text-semibold">Аминистратор</span>
 									<div class="text-size-mini text-muted">
-										<i class="icon-pin text-size-small"></i> &nbsp;Кыргызстан, Ош
+										<i class="icon-pin text-size-small"></i> &nbsp;Кыргызстан
 									</div>
 								</div>
 
@@ -167,7 +167,7 @@ if ($_SESSION['parol']=='Admin') {
 
 <li class="active"><a href="index.php?tabl=now"><i class="icon-home4"></i> <span>Негизги слайд</span></a></li>
 <li>
-<li ><a href="index.php?tabl=list_now&view=jsap"><i class="icon-home4"></i> <span>Жүгүртмө сап</span></a></li>
+<li ><a href="index.php?tabl=list_now&view=jsap"><i class="icon-home4"></i> <span>Банер алмаштыруу</span></a></li>
 <li>
 
 <li ><a href="index.php?tabl=left_now"><i class="icon-home4"></i> <span>Сол панел</span></a></li>
@@ -193,6 +193,14 @@ if ($_SESSION['parol']=='Admin') {
 <li ><a href="index.php?tabl=menu_now&view=menu"><i class="icon-home4"></i> 
 <span>
 Жогорку меню
+
+</span>
+</a></li>
+
+
+<li ><a href="index.php?tabl=footer&view=footer"><i class="icon-home4"></i> 
+<span>
+ФУТЕР
 
 </span>
 </a></li>
@@ -249,6 +257,10 @@ case 'left_now':
 		break;
 	case 'video':
 		echo "Видеолор панелине маалымат жайгаштыруу";
+		$_SESSION['pr']=$_GET['tabl'];
+		break;
+		case 'footer':
+		echo "Футер";
 		$_SESSION['pr']=$_GET['tabl'];
 		break;
 	
